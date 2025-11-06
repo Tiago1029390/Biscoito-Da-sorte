@@ -9,6 +9,12 @@ import random
 # ============================================================================
 # Dados da Aplicação
 # ============================================================================
+FRASES = ["vc eo cara",
+          "nao fique triste",
+          "tente outra vez"
+          ]
+
+'''
 FRASES = [
     "A vida trará coisas boas se tiveres paciência.",
     "Demonstre amor e alegria em todas as oportunidades e verás que a paz nasce dentro de você.",
@@ -26,7 +32,7 @@ FRASES = [
     "A sorte favorece a mente bem preparada.",
     "Seu esforço será recompensado.",
 ]
-
+'''
 # ============================================================================
 # Estado da Aplicação
 # ============================================================================
@@ -57,7 +63,7 @@ def main(page: ft.Page):
         "🥠 Biscoito da Sorte",
         size=32,
         weight=ft.FontWeight.BOLD,
-        color="amber800",
+        color="blue800",
         text_align=ft.TextAlign.CENTER,
     )
     
@@ -71,9 +77,9 @@ def main(page: ft.Page):
         ),
         margin=ft.margin.symmetric(vertical=30),
         padding=20,
-        bgcolor="amber50",
+        bgcolor="blue50",
         border_radius=10,
-        border=ft.border.all(2, "amber200"),
+        border=ft.border.all(2, "blue200"),
         alignment=ft.alignment.center,
     )
     
@@ -105,7 +111,7 @@ def main(page: ft.Page):
             frase_atual,
             size=18,
             text_align=ft.TextAlign.CENTER,
-            color="amber900",
+            color="pink600",
             weight=ft.FontWeight.W_500,
         )
         
@@ -123,8 +129,8 @@ def main(page: ft.Page):
         # icon="cake",
         on_click=abrir_biscoito,
         style=ft.ButtonStyle(
-            color="white",
-            bgcolor="amber700",
+            color="red",
+            bgcolor="red700",
             padding=20,
         ),
         width=200,
