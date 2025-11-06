@@ -15,19 +15,29 @@ FRASES = [
     "Acredite em milagres, mas não dependa deles.",
     "A sorte favorece a mente bem preparada.",
     "Seu esforço será recompensado.",
-]
-
-FRASES_MOTIVASSIONAL ={"Sabedoria"[
     "aplicar o conhecimento e o entendimento",
     "O conhecimento é saber que nada se sabe",
     "Para ganhar conhecimento, adicione coisas todos os dias",
     "O homem superior atribui a culpa a si próprio; o homem comum, aos outros",
-    "O ignorante afirma, o sábio duvida, o sensato reflete"
-    "Plante um pensamento, colha uma ação"
-    "Conhecer os outros é inteligência, conhecer-se a si próprio é verdadeira sabedoria"
-    "A maior sabedoria é ter o presente como objeto maior da vida, pois ele é a única realidade"
-    "Não confunda jamais conhecimento com sabedoria. Um o ajuda a ganhar a vida; o outro, a construir uma vida"
+    "O ignorante afirma, o sábio duvida, o sensato reflete",
+    "Plante um pensamento, colha uma ação",
+    "Conhecer os outros é inteligência, conhecer-se a si próprio é verdadeira sabedoria",
+    "A maior sabedoria é ter o presente como objeto maior da vida, pois ele é a única realidade",
+    "Não confunda jamais conhecimento com sabedoria. Um o ajuda a ganhar a vida; o outro, a construir uma vida",
     "O silêncio é a oração dos sábios"
-    ]
-
-}
+]
+'''
+FRASES_MOTIVASSIONAL ={"Sabedoria":[
+    "aplicar o conhecimento e o entendimento",
+    "O conhecimento é saber que nada se sabe",
+    "Para ganhar conhecimento, adicione coisas todos os dias",
+    "O homem superior atribui a culpa a si próprio; o homem comum, aos outros",
+    "O ignorante afirma, o sábio duvida, o sensato reflete",
+    "Plante um pensamento, colha uma ação",
+    "Conhecer os outros é inteligência, conhecer-se a si próprio é verdadeira sabedoria",
+    "A maior sabedoria é ter o presente como objeto maior da vida, pois ele é a única realidade",
+    "Não confunda jamais conhecimento com sabedoria. Um o ajuda a ganhar a vida; o outro, a construir uma vida",
+    "O silêncio é a oração dos sábios"]
+    
+    }
+'''
