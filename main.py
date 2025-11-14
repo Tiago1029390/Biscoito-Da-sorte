@@ -5,14 +5,15 @@ PROJETO BISCOITO DA SORTE
 
 import flet as ft
 import random
+from dados import FRASES
+from models.biscoito_model import BiscoitoModel
+meu_biscoito = BiscoitoModel()
+
+
 
 # ============================================================================
 # Dados da Aplicação
 # ============================================================================
-FRASES = ["vc eo cara",
-          "nao fique triste",
-          "tente outra vez"
-          ]
 
 '''
 FRASES = [
@@ -33,11 +34,6 @@ FRASES = [
     "Seu esforço será recompensado.",
 ]
 '''
-# ============================================================================
-# Estado da Aplicação
-# ============================================================================
-contador_cliques = 0
-frase_atual = ""
 
 
 # ============================================================================
@@ -51,8 +47,6 @@ def main(page: ft.Page):
     page.window_resizable = False
     page.theme_mode = ft.ThemeMode.LIGHT
     page.padding = 20
-    
-    global contador_cliques, frase_atual
     
     # ========================================================================
     # Componentes da Interface
@@ -85,7 +79,7 @@ def main(page: ft.Page):
     
     # Contador de cliques
     contador_texto = ft.Text(
-        "Biscoitos abertos: 0",
+        f"Biscoitos abertos:{meu_biscoito.get_total_frases()}",
         size=14,
         color="grey600",
         text_align=ft.TextAlign.CENTER,
@@ -98,17 +92,10 @@ def main(page: ft.Page):
         """
         Função chamada quando o botão é clicado.
         """
-        global contador_cliques, frase_atual
-        
-        # Seleciona frase aleatória
-        frase_atual = random.choice(FRASES)
-        
-        # Incrementa contador
-        contador_cliques += 1
-        
+    
         # Atualiza o texto da frase na tela
         frase_texto.content = ft.Text(
-            frase_atual,
+            meu_biscoito.get_frase_aleatoria(),
             size=18,
             text_align=ft.TextAlign.CENTER,
             color="pink600",
@@ -116,7 +103,29 @@ def main(page: ft.Page):
         )
         
         # Atualiza o contador na tela
-        contador_texto.value = f"Biscoitos abertos: {contador_cliques}"
+        contador_texto.value = f"Biscoitos abertos: {meu_biscoito.get_total_frases()}"
+        
+        # Atualiza a página
+        page.update()
+    
+    
+    def resetar_historico(e):
+        meu_biscoito.resetar_historico
+        """
+        Função chamada quando o botão é clicado.
+        """
+        
+        # Atualiza o texto da frase na tela
+        frase_texto.content = ft.Text(
+            meu_biscoito.resetar_historico(),
+            size=18,
+            text_align=ft.TextAlign.CENTER,
+            color="pink600",
+            weight=ft.FontWeight.W_500,
+        )
+        
+        # Atualiza o contador na tela
+        contador_texto.value = f"Biscoitos abertos: {meu_biscoito.get_total_frases()}"
         
         # Atualiza a página
         page.update()
@@ -129,6 +138,19 @@ def main(page: ft.Page):
         # icon="cake",
         on_click=abrir_biscoito,
         style=ft.ButtonStyle(
+            color="green",
+            bgcolor="700",
+            padding=20,
+        ),
+        width=200,
+        height=50,
+    )
+    
+    botao_resetar_historico = ft.ElevatedButton(
+        text="Resetar Histórico",
+        # icon="cake",
+        on_click= resetar_historico,
+        style=ft.ButtonStyle(
             color="red",
             bgcolor="red700",
             padding=20,
@@ -136,6 +158,13 @@ def main(page: ft.Page):
         width=200,
         height=50,
     )
+    container_reset_alinhamento = ft.Container(
+        content=botao_resetar_historico,
+        alignment=ft.alignment.center_right, # Alinha o conteúdo à direita
+        width=400, # Largura para garantir que o alinhamento funcione
+        margin=ft.margin.only(top=20),
+    )
+ 
     
     # ========================================================================
     # Layout da Página
@@ -151,10 +180,16 @@ def main(page: ft.Page):
                 ),
                 ft.Container(height=20),  # Espaçamento
                 contador_texto,
+                
+                
+                 ft.Container(expand=True),
+                 
+                 container_reset_alinhamento,
+                
             ],
-            alignment=ft.MainAxisAlignment.CENTER,
+            alignment=ft.MainAxisAlignment.START,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=0,
+            expand=True,
         )
     )
 
