@@ -110,7 +110,7 @@ def main(page: ft.Page):
     
     
     def resetar_historico(e):
-        meu_biscoito.resetar_historico
+        meu_biscoito.resetar_historico()
         """
         Função chamada quando o botão é clicado.
         """
@@ -123,9 +123,23 @@ def main(page: ft.Page):
             color="pink600",
             weight=ft.FontWeight.W_500,
         )
+    def adicionar_nova_frase(e):
+
+        """
+        Função chamada quando o botão é clicado.
+        """
+        
+        # Atualiza o texto da frase na tela
+        frase_texto.content = ft.Text(
+            meu_biscoito.adicionar_nova_frase('nova_frase'),
+            size=18,
+            text_align=ft.TextAlign.CENTER,
+            color="pink600",
+            weight=ft.FontWeight.W_500,
+        )
         
         # Atualiza o contador na tela
-        contador_texto.value = f"Biscoitos abertos: {meu_biscoito.get_total_frases()}"
+        #contador_texto.value = f"Biscoitos abertos: {meu_biscoito.get_total_frases()}"
         
         # Atualiza a página
         page.update()
@@ -145,6 +159,24 @@ def main(page: ft.Page):
         width=200,
         height=50,
     )
+    # ... Na seção "Botão de Ação" ...
+    
+    # Novo botão de Compartilhamento
+    botao_compartilhar = ft.IconButton(
+        
+        icon=ft.Icons.ATTACH_EMAIL,
+        icon_color= ft.Colors.BLUE_500,
+        on_click=meu_biscoito.compartilhar_frase,  # Esta função será criada no Passo 2
+        style=ft.ButtonStyle(
+            color=ft.Colors.RED_700,
+            padding=20,
+        ),
+        height= 100,
+        width= 100,
+        icon_size= 25
+    )
+
+    # ... (os outros botões e containers seguem) ...
     
     botao_resetar_historico = ft.ElevatedButton(
         text="Resetar Histórico",
@@ -164,7 +196,24 @@ def main(page: ft.Page):
         width=400, # Largura para garantir que o alinhamento funcione
         margin=ft.margin.only(top=20),
     )
- 
+    botao_adicionar_frase = ft.ElevatedButton(
+        text="Adicione uma nova Frase",
+        # icon="cake",
+        on_click= adicionar_nova_frase,
+        style=ft.ButtonStyle(
+            color="red",
+            bgcolor="red700",
+            padding=20,
+        ),
+        width=200,
+        height=50,
+    )
+    container_reset_alinhamento = ft.Container(
+        content=botao_adicionar_frase,
+        alignment=ft.alignment.center_right, # Alinha o conteúdo à direita
+        width=400, # Largura para garantir que o alinhamento funcione
+        margin=ft.margin.only(top=20),
+    )
     
     # ========================================================================
     # Layout da Página
@@ -178,13 +227,22 @@ def main(page: ft.Page):
                     content=botao,
                     alignment=ft.alignment.center,
                 ),
+                ft.Container(height=10),
+                ft.Container(
+                    content=botao_compartilhar,
+                    alignment=ft.alignment.center,
+
+                ),
+
                 ft.Container(height=20),  # Espaçamento
                 contador_texto,
                 
                 
-                 ft.Container(expand=True),
-                 
-                 container_reset_alinhamento,
+                ft.Container(expand=True),
+                #ft.Row(
+                    #[botao_]
+                #)
+                container_reset_alinhamento,
                 
             ],
             alignment=ft.MainAxisAlignment.START,
@@ -192,8 +250,7 @@ def main(page: ft.Page):
             expand=True,
         )
     )
-
-
+    
 # ============================================================================
 # Execução
 # ============================================================================
